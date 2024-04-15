@@ -10,9 +10,12 @@ class UserController extends Controller
 {
     public function index()
     {
-        $user = User::first();
+        $users = User::paginate(20)->appends(request()->query());
+
+
+
         return view('admin.users.index', [
-            'user' => $user
+            'users' => $users
         ]);
     }
 }
