@@ -1,15 +1,8 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    {{-- <script src="https://cdn.tailwindcss.com"></script> --}}
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-    rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <title>Document</title>
-</head>
-<body>
+@extends('admin.layouts.app')
+
+@section('title', 'Listagem de usuários')
+
+@section('content')
     <h1>Usuarios</h1>
 
     <a href="{{ route('users.create') }}">Criar novo usuario</a>
@@ -40,7 +33,8 @@
         </tbody>
     </table>
 
-    {{ $users->links() }}
+    <div class="mt-5 mb-5 pagination justify-content-center">
+        {{ $users->links() }}
+    </div>
 
-</body>
-</html>
+@endsection
