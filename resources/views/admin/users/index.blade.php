@@ -12,6 +12,8 @@
 <body>
     <h1>Usuarios</h1>
 
+    <a href="{{ route('users.create') }}">Criar novo usuario</a>
+
     <table>
         <thead>
             <tr>
