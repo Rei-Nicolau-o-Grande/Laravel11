@@ -36,4 +36,19 @@ class StoreUserRequest extends FormRequest
             ]
         ];
     }
+
+    public function messages(): array
+    {
+        return [
+            'name.required' => 'Nome é obrigatório',
+            'name.min' => 'Nome deve ter no mínimo 3 caracteres',
+            'name.max' => 'Nome deve ter no máximo 255 caracteres',
+            'email.required' => 'E-mail é obrigatório',
+            'email.email' => 'E-mail inválido',
+            'email.unique' => 'E-mail já cadastrado',
+            'password.required' => 'Senha é obrigatória',
+            'password.min' => 'Senha deve ter no mínimo 8 caracteres',
+            //'password.confirmed' => 'Senhas não conferem'
+        ];
+    }
 }
