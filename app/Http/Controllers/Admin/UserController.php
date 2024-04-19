@@ -30,4 +30,30 @@ class UserController extends Controller
             ->route('users.index')
             ->with('success', 'Usuario criado com sucesso!');
     }
+
+    public function edit(string $id)
+    {
+        if (!$user = User::find($id)) {
+            return redirect()
+                ->route('users.index')
+                ->with('error', 'Usuário não encontrado!');
+        }
+
+        return view('admin.users.edit', compact('user'));
+    }
+
+    public function update(string $id, Request $request)
+    {
+        if (!$user = User::find($id)) {
+            return back()->with('info', 'Usuário não encontrado!');
+        }
+
+        $user->update($request->only([
+            'name', 'email'
+        ]));
+
+        return redirect()
+            ->route('users.index')
+            ->with('success', 'Usuário atualizado com sucesso!');
+    }
 }
