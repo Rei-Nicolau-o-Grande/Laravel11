@@ -1,22 +1,21 @@
-
-@if(session()->has('info'))
+@if (session()->has('info'))
     <div class="alert alert-info" role="alert">
         {{ session('info') }}
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        <button type="button" class="btn-close float-end" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
 @endif
 
-@if(session()->has('success'))
+@if (session()->has('success'))
     <div class="alert alert-success" role="alert">
         {{ session('success') }}
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        <button type="button" class="btn-close float-end" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
 @endif
 
-@if(session()->has('error'))
-    <div class="alert alert-danger" role="alert">
+@if (session()->has('error'))
+    <div class="alert alert-danger col-6" role="alert">
         {{ session('error') }}
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        <button type="button" class="btn-close float-end" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
 @endif
 
@@ -24,14 +23,28 @@
     <div class="alert alert-info" role="alert">
         {{ session('message') }}
     </div>
-
 @endif
 
-@if($errors->any())
-    <div class="">
-        @foreach ($errors->all() as $error)
-            <small>{{ $error }}</small>
-        @endforeach
+@if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+        <button type="button" class="btn-close float-end" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+@endif
+
+
+@if (session()->has('error'))
+    <div class="toast align-items-center" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="d-flex">
+            <div class="toast-body">
+                {{ session('error') }}.
+            </div>
+            <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
     </div>
 @endif
 

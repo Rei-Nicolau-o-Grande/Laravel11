@@ -46,7 +46,7 @@ class UserController extends Controller
     public function update(string $id, UpdateUserRequest $request)
     {
         if (!$user = User::find($id)) {
-            return back()->with('info', 'Usuário não encontrado!');
+            return back()->with('error', 'Usuário não encontrado!');
         }
 
         $data = $request->only(['name', 'email']);
@@ -61,8 +61,7 @@ class UserController extends Controller
         //     'name', 'email'
         // ]));
 
-        return redirect()
-            ->route('users.index')
+        return back()
             ->with('success', 'Usuário atualizado com sucesso!');
     }
 }
