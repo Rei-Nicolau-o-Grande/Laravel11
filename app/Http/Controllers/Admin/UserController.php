@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
+use App\Models\Category;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -15,8 +16,11 @@ class UserController extends Controller
     {
         $users = User::paginate(20)->appends(request()->query());
 
+        $categories = Category::paginate(20)->appends(request()->query());
+
         return view('admin.users.index', [
-            'users' => $users
+            'users' => $users,
+            'categories' => $categories,
         ]);
     }
 
