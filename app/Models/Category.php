@@ -10,12 +10,14 @@ class Category extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['name', 'description', 'is_active', 'published_at', 'created_at'];
+
     // protected $table = "categorias";
 
-    public function getIsActiveAttribute($value)
-    {
-        return $value ? 'verdadeiro' : 'falso';
-    }
+    // public function getIsActiveAttribute($value)
+    // {
+    //     return $value ? 'verdadeiro' : 'falso';
+    // }
 
     // public function getPublishedAtAttribute($value)
     // {
@@ -25,9 +27,9 @@ class Category extends Model
     protected function casts(): array
     {
         return [
-            'is_active' => 'boolean:true,false',
+            'is_active' => 'boolean',
             'published_at' => DateTransformPtBr::class,
-            'created_at' => DateTransformPtBr::class,
+            'created_at' => 'datetime:d-m-Y',
         ];
     }
 }

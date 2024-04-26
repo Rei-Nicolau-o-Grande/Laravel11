@@ -10,6 +10,8 @@
     <ul>
         <li><strong>{{ $user->name }}</strong></li>
         <li><strong>{{ $user->email }}</strong></li>
+        <li><strong>{{ $user->created_at }}</strong></li>
+        <li><strong>{{ $user->updated_at }}</strong></li>
     </ul>
 
     <form action="{{ route('users.destroy', $user->id) }}" method="POST">
