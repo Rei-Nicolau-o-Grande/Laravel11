@@ -17,7 +17,12 @@ class CheckIfIsAdmin
     public function handle(Request $request, Closure $next): Response
     {
 
-        if (Auth::user()->isAdmin()) {
+        // $user = Auth::user();
+        $user = auth()->user();
+
+
+        // diz ter o erro não consegue interpretar o Auth::user()
+        if ($user->isAdmin()) {
             return $next($request);
         }
 
