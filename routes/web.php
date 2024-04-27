@@ -5,7 +5,8 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Middleware\CheckIfIsAdmin;
 use Illuminate\Support\Facades\Route;
 
-Route::middleware('auth')->group(function () {
+Route::middleware('auth')->prefix('admin')->group(function () {
+    // Route::resource('/users', UserController::class)->except(['create', 'store', 'destroy'])->middleware(CheckIfIsAdmin::class);
     Route::get('/users/create', [UserController::class, 'create'])->name('users.create');
     Route::post('/users/create/store', [UserController::class, 'store'])->name('users.store');
     Route::delete('/users/{user}', [UserController::class, 'destroy'])->name('users.destroy')->middleware(CheckIfIsAdmin::class);
