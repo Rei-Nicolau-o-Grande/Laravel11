@@ -9,6 +9,7 @@ use App\Models\Category;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 
 class UserController extends Controller
 {
@@ -83,6 +84,17 @@ class UserController extends Controller
 
     public function destroy(string $id)
     {
+        // // se não tem permissão para deletar usuários
+        // if (Gate::denies('is-admin')) {
+        //     return back()
+        //     ->with('error', 'Você não é admin.');
+        // }
+
+        if (Gate::allows('is-admin')) {
+                return back()
+                ->with('error', 'Você não é admin.');
+            }
+
         if (!$user = User::find($id)) {
             return redirect()
                 ->route('users.index')

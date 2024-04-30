@@ -27,7 +27,7 @@
             <ul class="dropdown-menu">
                 <li><a class="dropdown-item" href="{{ route('users.index') }}">Inicio</a></li>
                 <li><a class="dropdown-item" href="{{ route('users.create') }}">Criar Usuário</a></li>
-                <li><a class="dropdown-item" href="#">Something else here</a></li>
+                <li><a class="dropdown-item" href="{{ route('dashboard') }}">Dashboard</a></li>
             </ul>
         </div>
         @yield('content')
