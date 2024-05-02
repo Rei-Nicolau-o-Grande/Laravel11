@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth')->prefix('admin')->group(function () {
     // Route::resource('/users', UserController::class)->except(['create', 'store', 'destroy'])->middleware(CheckIfIsAdmin::class);
     Route::get('/users/create', [UserController::class, 'create'])->name('users.create');
+    Route::get('/shearch', [UserController::class, 'search'])->name('users.search');
     Route::post('/users/create/store', [UserController::class, 'store'])->name('users.store');
     Route::delete('/users/{user}', [UserController::class, 'destroy'])->name('users.destroy')->middleware(CheckIfIsAdmin::class);
     Route::get('/users/{user}', [UserController::class, 'show'])->name('users.show');

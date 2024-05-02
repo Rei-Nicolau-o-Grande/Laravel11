@@ -8,6 +8,7 @@
     <x-alert/>
 
     <ul>
+        <li><strong>{{ $user->id }}</strong></li>
         <li><strong>{{ $user->name }}</strong></li>
         <li><strong>{{ $user->email }}</strong></li>
         <li><strong>{{ $user->created_at }}</strong></li>
@@ -15,7 +16,9 @@
     </ul>
 
     @can('owner', $user)
-        <h1>Pode deletar</h1>
+        <h1>Meu Show</h1>
+    @elsecan('owner', $user)
+        <h1>Não é dono</h1>
     @endcan
 
     @can('is-admin')

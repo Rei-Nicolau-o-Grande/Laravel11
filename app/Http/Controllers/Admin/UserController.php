@@ -7,6 +7,7 @@ use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
 use App\Models\Category;
 use App\Models\User;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
@@ -23,6 +24,16 @@ class UserController extends Controller
             'users' => $users,
             'categories' => $categories,
         ]);
+    }
+
+    public function search(Request $request): JsonResponse
+    {
+        $data = User::select('id', 'name', 'email')
+            ->where('name', 'LIKE', "%{$request->search}%")
+            ->orWhere('email', 'LIKE', "%{$request->search}%")
+            ->get();
+
+        return response()->json($data);
     }
 
     public function create()
